@@ -1,14 +1,15 @@
 # 2022/04/21
 # Yen-Ting Chen
 # Download online data from a vector of urls into one file path in the client
-# url: provide a data-containing urls. Can be a vector
-# file_path: provide a path for the downloaded data
+# url: provide a data-containing urls. Can be a vector.
+# folder_path: provide a path for the downloaded data
 # script written by Chat-GPT
 
-download_url <- function(url_list, file_path) {
+download_url <- function(url_list, folder_path) {
   # Set the URL of the file you want to download
   
-  if (is.character(url_list) && is.character(file_path)){
+  # check variable class
+  if (is.character(url_list) && is.character(folder_path)){
     
     for (url in url_list) {
       # Extract the file name from the URL
@@ -19,7 +20,7 @@ download_url <- function(url_list, file_path) {
       download.file(url, destfile = file_path, mode = "wb")
     }
   } else {
-    stop("Both url and file_path should be a vector")
+    stop("Both url and folder_path should be a vector")
   }
 }
 

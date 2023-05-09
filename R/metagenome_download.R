@@ -1,28 +1,31 @@
-# Downloading Toolik Lake surface water metagenome
-# 2023/04/20, Yen-Ting Chen
+# Download lake metagenome raw sequences
+# Date: 2023/04/20
+# Author: Yen-Ting Chen
 library(neonUtilities)
 library(neonOS)
 library(raster)
 library(dplyr)
 
+# load source code for downloading files using urls
 source("source//download_url.R")
 
-# Download metadata for metagenome　####
-# sw_metag <- loadByProduct(dpID = "DP1.20281.001",
-#                           package = "expanded",  
-#                           site = "TOOK")
-# save(sw_metag, file = "sw_metag_testing.RData")
-load(file = "sw_metag_testing.RData")
+# load metagenome metadata ####
+load(file = "data/sw_metaG_meta.RData")
 
 # file of interest ####
-View(sw_metag$mms_swMetagenomeDnaExtraction)
-View(sw_metag$mms_swMetagenomeSequencing)
-View(sw_metag$mms_swRawDataFiles)
+# View(sw_metaG_meta$mms_swMetagenomeDnaExtraction)
+# View(sw_metaG_meta$mms_swMetagenomeSequencing)
+# View(sw_metaG_meta$mms_swRawDataFiles)
 
 # Download sequencing files####
 # extract url list from metadata
-url_list <- sw_metag$mms_swRawDataFiles$rawDataFilePath
+url_list <- sw_metaG_meta$mms_swRawDataFiles$rawDataFilePath
 
-# download sequencing data from the urls
-download_url(url_list,
-             # )
+# download sequencing data from the urls####
+# download to local client
+setwd("/Users/yentingchen/Documents/NEONlakes")
+download_url(url_list[1], "metagenome/")
+
+# download to external harddrive
+setwd("/Volumes/TOSHIBA EXT/")
+download_url(url_list[1], "NEONlake_metagenome/")
