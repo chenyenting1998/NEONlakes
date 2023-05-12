@@ -7,7 +7,7 @@ library(raster)
 library(dplyr)
 
 # load source code for downloading files using urls
-source("source//download_url.R")
+source("source//download_metagenome.R")
 
 # load metagenome metadata ####
 load(file = "data/sw_metaG_meta.RData")
@@ -17,6 +17,14 @@ load(file = "data/sw_metaG_meta.RData")
 # View(sw_metaG_meta$mms_swMetagenomeSequencing)
 # View(sw_metaG_meta$mms_swRawDataFiles)
 
+#
+sw_metaG_meta$mms_swMetagenomeDnaExtraction$genomicsSampleID
+# What does CO, IN, and OT mean? A: CO: ; IN: inlet; OT: outlet
+# What does AMC.PLANKTON.1~3 mean?
+
+sw_metaG_meta$mms_swMetagenomeDnaExtraction$dnaPooledStatus
+
+68*2
 # Download sequencing files####
 # extract url list from metadata
 url_list <- sw_metaG_meta$mms_swRawDataFiles$rawDataFilePath
